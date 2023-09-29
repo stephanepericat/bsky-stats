@@ -1,7 +1,9 @@
 import axios from 'axios'
+import { Actor } from './types'
 
 import {
   BSKY_API_ROOT,
+  BSKY_PROFILE_LEXICON,
   BSKY_SESSION_LEXICON,
 } from '~/assets/constants/bluesky'
 
@@ -19,7 +21,18 @@ export default () => {
     }
   }
 
+  const userProfile = async (actor: string, accessToken: string): Promise<Actor|null> => {
+    try {
+      const { data } = await client.get(BSKY_PROFILE_LEXICON, { headers: { Authorization: `Bearer ${accessToken}` }, params: { actor } })
+      return data
+    } catch (e) {
+      console.log('error', e)
+      return null
+    }
+  }
+
   return {
     createSession,
+    userProfile,
   }
 }
