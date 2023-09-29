@@ -2,5 +2,7 @@
   <div>{{ title }}</div>
 </template>
 <script setup lang="ts">
-  const title:string = 'Home' 
+  definePageMeta({ middleware: 'auth' })
+
+  const title = ref('Home') 
 </script>
