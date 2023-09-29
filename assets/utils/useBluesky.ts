@@ -23,10 +23,15 @@ export default () => {
 
   const userProfile = async (actor: string, accessToken: string): Promise<Actor|null> => {
     try {
-      const { data } = await client.get(BSKY_PROFILE_LEXICON, { headers: { Authorization: `Bearer ${accessToken}` }, params: { actor } })
+      const { data } = await client.get(BSKY_PROFILE_LEXICON, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        },
+        params: { actor },
+      })
+
       return data
     } catch (e) {
-      console.log('error', e)
       return null
     }
   }
