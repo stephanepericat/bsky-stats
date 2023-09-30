@@ -3,6 +3,7 @@ import { Actor } from './types'
 
 import {
   BSKY_API_ROOT,
+  BSKY_FOLLOWERS_LEXICON,
   BSKY_PROFILE_LEXICON,
   BSKY_SESSION_LEXICON,
 } from '~/assets/constants/bluesky'
@@ -15,6 +16,21 @@ export default () => {
   const createSession = async (identifier: string, password: string) => {
     try {
       const { data } = await client.post(BSKY_SESSION_LEXICON, { identifier, password })
+      return data
+    } catch (e) {
+      return null
+    }
+  }
+
+  const userFollowers = async (actor: string, accessToken: string) => {
+    try {
+      const { data } = await client.get(BSKY_FOLLOWERS_LEXICON, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        },
+        params: { actor },
+      })
+
       return data
     } catch (e) {
       return null
@@ -38,6 +54,7 @@ export default () => {
 
   return {
     createSession,
+    userFollowers,
     userProfile,
   }
 }
