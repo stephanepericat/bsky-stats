@@ -4,5 +4,10 @@ export default defineNuxtConfig({
 
   modules: [
     '@sidebase/nuxt-auth',
+    '@nuxt/ui',
   ],
+
+  ui : {
+    global: true,
+  }
 })

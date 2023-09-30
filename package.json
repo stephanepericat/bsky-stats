@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@atproto/api": "^0.6.20",
+    "@nuxt/ui": "^2.8.1",
     "@sidebase/nuxt-auth": "^0.6.0-beta.6",
     "axios": "^1.5.1",
     "next-auth": "4.22.5"
